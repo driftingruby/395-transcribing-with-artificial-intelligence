@@ -1,0 +1,40 @@
+<%= turbo_stream_from project %>
+
+<div id="<%= dom_id project %>" class="scaffold_record">
+
+  <div class="container my-5">
+    <div class="progress" style="height: 40px; border-radius: 20px; overflow: hidden;">
+      <div class="progress-bar <%= ["pending", "processing", "completed"].include?(project.status) ? "bg-success" : "bg-secondary" %>" role="progressbar" style="width: 25%">
+        <span class="d-flex justify-content-center align-items-center h-100 text-white fw-bold">Pending</span>
+      </div>
+      <div class="progress-bar <%= ["processing", "completed"].include?(project.status) ? "bg-success" : "bg-secondary" %>" role="progressbar" style="width: 50%">
+        <span class="d-flex justify-content-center align-items-center h-100 text-white fw-bold">Processing</span>
+      </div>
+      <% if project.failed? %>
+        <div class="progress-bar bg-danger" role="progressbar" style="width: 25%">
+          <span class="d-flex justify-content-center align-items-center h-100 text-white fw-bold">Failed</span>
+        </div>
+      <% else %>
+        <div class="progress-bar <%= ["completed"].include?(project.status) ? "bg-success" : "bg-secondary" %>" role="progressbar" style="width: 25%">
+          <span class="d-flex justify-content-center align-items-center h-100 text-white fw-bold">Completed</span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <p>
+    <strong>Name:</strong>
+    <%= project.name %>
+  </p>
+
+  <p>
+    <strong>Transcription:</strong>
+    <%= project.transcription %>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <%= project.status %>
+  </p>
+
+</div>

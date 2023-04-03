@@ -1,0 +1,5 @@
+web: unset PORT && bin/rails server
+worker: sidekiq -C config/sidekiq_default.yml
+transcriber: WHISPER=true sidekiq -C config/sidekiq_transcriber.yml
+js: yarn build --watch
+css: yarn build:css --watch
